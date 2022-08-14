@@ -5,6 +5,7 @@ import jakarta.inject.Singleton;
 import lombok.NonNull;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import siparis.models.ProductModel;
 import siparis.repositories.ProductRepository;
 
@@ -32,11 +33,8 @@ public class ProductService {
         }
     }
 
-    public Optional<ProductModel> find(@NonNull String id) {
+    public Optional<ProductModel> find(ObjectId id) {
         return productRepository.findById(id);
     }
 
-    public Iterable<ProductModel> findByProductInList(List<String> Urun) {
-        return productRepository.findByProductInList(Urun);
-    }
 }

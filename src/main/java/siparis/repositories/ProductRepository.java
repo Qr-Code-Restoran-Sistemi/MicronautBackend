@@ -2,12 +2,11 @@ package siparis.repositories;
 
 import io.micronaut.data.mongodb.annotation.MongoRepository;
 import io.micronaut.data.repository.CrudRepository;
+import org.bson.types.ObjectId;
 import siparis.models.ProductModel;
 
-import java.util.List;
 
 @MongoRepository
-public interface ProductRepository extends CrudRepository<ProductModel, String>{
+public interface ProductRepository extends CrudRepository<ProductModel, ObjectId>{
 
-    Iterable<ProductModel> findByProductInList(List<String> urun);
 }
