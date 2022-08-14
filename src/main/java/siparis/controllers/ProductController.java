@@ -12,6 +12,7 @@ import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.inject.Inject;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import siparis.models.ProductModel;
 import siparis.services.ProductService;
 
@@ -28,30 +29,25 @@ public class ProductController {
     @Inject
     private final ProductService productService;
 
-    @Get("UrunleriGoster")
+    @Get("/UrunleriGoster")
     Iterable<ProductModel> list() {
         return productService.list();
     }
 
-    @Post("UrunEkle")
+    @Post("/UrunEkle")
     @Status(HttpStatus.CREATED)
     ProductModel save(@NonNull @NotNull @Valid ProductModel productModel) {
         return productService.save(productModel);
     }
 
-    @Put("UrunDegistir")
+    @Put("/UrunDegistir")
     ProductModel update(@NonNull @NotNull @Valid ProductModel productModel) {
         return productService.save(productModel);
     }
 
     @Get("/{id}")
-    Optional<ProductModel> find(@PathVariable String id) {
+    Optional<ProductModel> find(@PathVariable ObjectId id) {
         return productService.find(id);
-    }
-
-    @Get("/adAra")
-    Iterable<ProductModel> query(@QueryValue @NotNull List<String> Urun) {
-        return productService.findByProductInList(Urun);
     }
 
 }
